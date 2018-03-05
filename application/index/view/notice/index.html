@@ -1,0 +1,21 @@
+{extend name="common:main" /}
+{block name="content"}
+
+    <div class="container-fluid">
+        {volist name='notices' id='notice'}
+        <div class="row noticeList">
+            <a href="{:url('/index/notice/detail',['id'=>$notice['id']])}">
+            <div class="col-xs-2">
+                <img class="noticeImg" src="{:get_file_path($notice['logo'])}" />
+            </div>
+            <div class="col-xs-10">
+                <p class="title">{$notice.title}</p>
+                <p class="intro"><?=mb_substr($notice['content'],0,100)?></p>
+                <p class="info">浏览: {$notice.view} <span class="pull-right"><?=date('Y-m-d',$notice['start_time'])?></span> </p>
+            </div>
+            </a>
+        </div>
+        {/volist}
+        <a href="{:url('/index/index/index')}" class="btn btn-success">返回到首页</a>
+    </div>
+{/block}
